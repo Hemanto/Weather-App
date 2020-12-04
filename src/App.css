@@ -55,3 +55,6 @@ button{
   box-shadow: 0px -20px 9px 14px rgb(89 77 93 / 71%);
   border: none;
 }
+::placeholder{
+ text-align: center;
+}
