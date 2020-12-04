@@ -63,7 +63,7 @@ const Home = () => {
     }, [])
 
     return (
-        <div>
+        <div className='background-image'>
             <input onChange={(e)=>{setCity(e.target.value)}} placeholder="Enter City Name" value={City} />
             <button onClick={search} >Search</button>
             {Coords.main ? <div>
