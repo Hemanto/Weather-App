@@ -48,7 +48,6 @@ const Home = () => {
 
     useEffect(() => {
         if (window.navigator.geolocation) {
-            //const positions = window.navigator.geolocation
             navigator.geolocation.getCurrentPosition(
                 async (p) => {
                     const lat = p.coords.latitude
