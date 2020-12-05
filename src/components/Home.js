@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import gif from '../weather_dribbble_size.gif.gif'
 
 
@@ -7,8 +7,16 @@ const Home = () => {
     const URL = 'https://api.openweathermap.org/data/2.5/weather';
     const API = '4e8c3801b28b71e7875c5f4e757ff952'
 
+    const textInput = useRef(null);
+
     const [Coords, setCords] = useState({})
     const [City, setCity] = useState('')
+
+    const inputrefs = React.createRef()
+
+    function handleClick() {
+        textInput.current.focus();
+      }
 
     const fetchgeolocation = async (lat, lon) => {
         const { data } = await Axios.get(URL, {
@@ -47,6 +55,8 @@ const Home = () => {
       }
 
     useEffect(() => {
+        inputrefs.current.focus()
+
         if (window.navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 async (p) => {
@@ -64,7 +74,7 @@ const Home = () => {
     return (
         <div className='background-image'>
             <h1>Weather Info</h1>
-            <input onChange={(e)=>{setCity(e.target.value)}} placeholder="Enter City Name" value={City} />
+            <input onChange={(e)=>{setCity(e.target.value)}} placeholder="Enter City Name" value={City} ref={inputrefs}/>
             <button onClick={search} >Search</button>
             {Coords.main ? <div>
                 <h1>
